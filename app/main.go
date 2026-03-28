@@ -18,8 +18,7 @@ func main() {
 		if err != nil {
 			fmt.Println("command not found")
 		}
-		command = strings.TrimRight(command, "\n")
-		if command == "exit" {
+		if strings.TrimRight(command, "\n") == "exit" {
 			break
 		}
 		fmt.Println(command[:len(command)-1] + ": command not found")

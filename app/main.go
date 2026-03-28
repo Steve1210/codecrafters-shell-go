@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 )
 
@@ -35,7 +36,13 @@ func main() {
 				}
 			}
 			if !found {
-				fmt.Printf("%s: not found\n", arg)
+				// if not builtin, Look for exec in PATH
+				path, err := exec.LookPath(arg)
+				if err != nil {
+					fmt.Printf("%s: not found\n", arg)
+				} else {
+					fmt.Printf("%s is %s\n", arg, path)
+				}
 			}
 		} else {
 			fmt.Println(command[:len(command)-1] + ": command not found")

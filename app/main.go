@@ -45,7 +45,21 @@ func main() {
 				}
 			}
 		} else {
-			fmt.Println(command[:len(command)-1] + ": command not found")
+			// check if command is in PATH
+			parts := strings.Split(strings.TrimRight(command, "\n"), " ")
+			file := parts[0]
+			_, err := exec.LookPath(file)
+			if err != nil {
+				fmt.Println(file + ": command not found")
+			} else {
+				//args := strings.Join(strings.Split(command, " ")[1:], "")
+				cmd := exec.Command(file, parts[1:]...)
+				cmd.Stdout = os.Stdout
+				cmd.Stderr = os.Stderr
+				if err := cmd.Run(); err != nil {
+					fmt.Println(err)
+				}
+			}
 		}
 	}
 }

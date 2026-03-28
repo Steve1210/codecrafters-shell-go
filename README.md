@@ -1,4 +1,4 @@
-This is a starting point for Go solutions to the
+This is my Go solution to the
 ["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
 
 In this challenge, I'll build my own POSIX compliant shell that's capable of

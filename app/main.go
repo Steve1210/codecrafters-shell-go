@@ -20,7 +20,10 @@ func main() {
 		}
 		if strings.TrimRight(command, "\n") == "exit" {
 			break
+		} else if strings.HasPrefix(command, "echo ") {
+			fmt.Print(command[5:])
+		} else {
+			fmt.Println(command[:len(command)-1] + ": command not found")
 		}
-		fmt.Println(command[:len(command)-1] + ": command not found")
 	}
 }
